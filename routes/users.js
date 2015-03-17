@@ -5,7 +5,17 @@ var User = mongoose.model('User');
 
 /* GET users listing. */
 router.get('/', function(req, res) {
-  res.send('respond with a resource');
+  if(req.session.loggedIn === true){
+	res.render('user-page',{
+		title:req.sesssion.user.name,
+		name:req.session.user.name,
+		email:req.session.user.email,
+		userID: req.session.user._id
+	});
+  }
+  else{
+	res.redirect('/login');
+  }
 });
 
 router.get('/new',function(req,res){
@@ -22,7 +32,7 @@ router.post('/new',function(req,res){
 		if(err){
 			console.log(err);
 			if(err.code === 11000){
-				res.redirect('/user/new?exists=true');
+				res.redirect('/users/new?exists=true');
 			}
 			else {
 				res.redirect('/?error=true');
@@ -31,6 +41,10 @@ router.post('/new',function(req,res){
 		else{
 			// Success
 			console.log("User created and saved: " + user);
+			req.session.user = {"name":user.name,"email":user.email,"_id":user._id};
+			req.session.loggedIn = true;
+			res.redirect('/users');
+				
 		}
 	});
 	
@@ -54,7 +68,7 @@ router.post('/delete',function(){
 });
 
 router.get('/login',function(){
-	
+	res.render('login-form',{title:'Log in'});
 });
 
 router.post('/login',function(){
