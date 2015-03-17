@@ -1,0 +1,8 @@
+extends layout
+block content
+	h1 New Project
+	form(name="frmNewProject",method="post",action="")
+		label(for="txtProjectName") Project Name :
+		input(type="text",name="txtProjectName",id="txtProjectName")
+		br
+		input(type="submit",value="Create Project")

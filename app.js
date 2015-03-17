@@ -31,7 +31,7 @@ app.use(session({
 }));
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/user', users);
 app.use('/project',projects);
 
 // catch 404 and forward to error handler

@@ -1,0 +1,12 @@
+extends layout
+block content
+	h1 #{title}
+	form(name="frmNewTask",method="post",action="")
+		label(for="txtName") Task Name:
+		input(type="text",name="txtName",id="txtName",value="#{name}")
+		br
+		label(for="txtDesc") Task Description:
+		textarea(rows="5",cols="40",name="txtDesc",id="txtDesc")
+			|  #{desc}
+		br
+		input(type="submit",name="btnSubmit",value="#{buttonText}")

@@ -1,0 +1,15 @@
+extends layout
+block content
+	h1 Mongoose Project Management
+	h2= projectName
+	p
+	|  Created by: #{createdBy_name}  
+	a(href="mailto:#{createdBy_email}") #{createdBy_email}
+	h3 Tasks
+	if tasks.length > 0
+		ul
+			for task in tasks
+				li
+					a(href="/project/#{projectID}/task/edit/#{task._id}",title="#{task.taskDesc}") #{task.taskName}
+	p
+		a(href="new_task/#{projectID}") Create Task
