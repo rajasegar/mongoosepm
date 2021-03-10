@@ -3,7 +3,8 @@ var mongoose = require('mongoose');
 var creationInfo = require('./creationInfo');
 var modifiedOn = require('./modifiedOn');
 // Build the connection string
-var dbURI = process.env.MONGODB_URI || "mongodb://localhost/MongoosePM";
+//var dbURI = process.env.MONGODB_URI || "mongodb://localhost/MongoosePM";
+var dbURI = process.env.MONGODB_URI ;
 
 // Create the database connection
 mongoose.connect(dbURI);
@@ -40,7 +41,8 @@ var userSchema = new mongoose.Schema({
 });
 
 userSchema.plugin(modifiedOn);
-// Build the User model mongoose.model('User',userSchema);
+// Build the User model 
+mongoose.model('User',userSchema);
 
 var lengthValidator = function(val){
   if(val && val.length >= 5){
