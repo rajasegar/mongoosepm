@@ -3,11 +3,11 @@ var mongoose = require('mongoose');
 var creationInfo = require('./creationInfo');
 var modifiedOn = require('./modifiedOn');
 // Build the connection string
-//var dbURI = process.env.MONGODB_URI || "mongodb://localhost/MongoosePM";
-var dbURI = process.env.MONGODB_URI ;
+// var dbURI = process.env.MONGODB_URI || "mongodb://localhost:27017/MongoosePM";
+var dbURI = "mongodb://localhost:27017/MongoosePM";
 
 // Create the database connection
-mongoose.connect(dbURI);
+mongoose.connect(dbURI, { userNewUrlParser: true, useUnifiedTopology: true});
 
 mongoose.connection.on('connected',function(){
 
